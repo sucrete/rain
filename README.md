@@ -21,7 +21,9 @@ Follow Codrops: [Twitter](http://www.twitter.com/codrops), [Facebook](http://www
 
 [© Codrops 2015](http://www.codrops.com)
 
+To fire local server use this in CLI:
 
-
-
+```
+npx http-server
+```
 
