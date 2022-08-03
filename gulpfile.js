@@ -1,4 +1,5 @@
-var gulp = require('gulp'),
+const ghPages = require('gulp-gh-pages');
+var { task, src } = require('gulp'),
   fs = require('fs'),
   source = require('vinyl-source-stream'),
   browserify = require('browserify'),
@@ -18,13 +19,9 @@ function compileJS(file){
     .pipe(streamify(uglify()))
     .pipe(gulp.dest('demo/js'));
 }
-gulp.task('default',['js1','js2','js3'],function(){});
-gulp.task('js1',function(){
+task('default',['js1'],function(){});
+task('js1',function(){
   compileJS('index');
 });
-gulp.task('js2',function(){
-  compileJS('index2');
-});
-gulp.task('js3',function(){
-  compileJS('index3');
-});
+
+task('deploy', () => src('./demo/**/*').pipe(ghPages()));
