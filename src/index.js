@@ -12,8 +12,9 @@ let textureRainFg, textureRainBg,
   textureFalloutFg, textureFalloutBg,
   textureSunFg, textureSunBg,
   textureDrizzleFg, textureDrizzleBg,
-  dropColor, dropAlpha;
-
+  dropColor, dropAlpha,
+  garden1, garden2;
+  
 let textureFg,
   textureFgCtx,
   textureBg,
@@ -43,8 +44,8 @@ function loadTextures(){
     {name:"dropAlpha",src:"img/drop-alpha.png"},
     {name:"dropColor",src:"img/drop-color.png"},
 
-    {name:"textureRainFg",src:"img/weather/texture-rain-fg.png"},
-    {name:"textureRainBg",src:"img/weather/texture-rain-bg.png"},
+    {name:"textureRainFg",src:"img/garden1.jpg"},
+    {name:"textureRainBg",src:"img/garden1.jpg"},
 
     {name:"textureStormLightningFg",src:"img/weather/texture-storm-lightning-fg.png"},
     {name:"textureStormLightningBg",src:"img/weather/texture-storm-lightning-bg.png"},
@@ -57,6 +58,9 @@ function loadTextures(){
 
     {name:"textureDrizzleFg",src:"img/weather/texture-drizzle-fg.png"},
     {name:"textureDrizzleBg",src:"img/weather/texture-drizzle-bg.png"},
+
+    { name: "garden1", src: "img/garden1.jpg" }, 
+    { name: "garden2", src: "img/garden2.jpg" }
   ]).then((images)=>{
     textureRainFg = images.textureRainFg.img;
     textureRainBg = images.textureRainBg.img;
@@ -75,6 +79,9 @@ function loadTextures(){
 
     dropColor = images.dropColor.img;
     dropAlpha = images.dropAlpha.img;
+
+    garden1 = images.garden1.img;
+    garden2 = images.garden2.img;
 
     init();
   });
@@ -107,8 +114,10 @@ function init(){
   textureFgCtx = textureFg.getContext('2d');
   textureBg = createCanvas(textureBgSize.width,textureBgSize.height);
   textureBgCtx = textureBg.getContext('2d');
-
-  generateTextures(textureRainFg,textureRainBg);
+  var background = new Image();
+  background.src = "../img/garden1.jpg";
+  
+  generateTextures(garden1, garden1);
 
   renderer = new RainRenderer(canvas, raindrops.canvas, textureFg, textureBg, null,{
     brightness:1.04,
@@ -168,8 +177,8 @@ function setupWeatherData(){
     dropletsSize:[3,5.5],
     trailRate:1,
     trailScaleRange:[0.25,0.35],
-    fg:textureRainFg,
-    bg:textureRainBg,
+    fg:garden1,
+    bg:garden1,
     flashFg:null,
     flashBg:null,
     flashChance:0,
@@ -186,8 +195,8 @@ function setupWeatherData(){
       dropletsRate:50,
       raining:true,
       // trailRate:2.5,
-      fg:textureRainFg,
-      bg:textureRainBg
+      fg:garden1,
+      bg:garden1
     }),
     storm:weather({
       maxR:55,
@@ -196,8 +205,8 @@ function setupWeatherData(){
       dropletsSize:[3,5.5],
       trailRate:2.5,
       trailScaleRange:[0.25,0.4],
-      fg:textureRainFg,
-      bg:textureRainBg,
+      fg:garden1,
+      bg:garden1,
       flashFg:textureStormLightningFg,
       flashBg:textureStormLightningBg,
       flashChance:0.1
@@ -219,8 +228,8 @@ function setupWeatherData(){
       rainLimit:2,
       dropletsRate:10,
       dropletsSize:[3.5,6],
-      fg:textureDrizzleFg,
-      bg:textureDrizzleBg
+      fg:garden1,
+      bg:garden1
     }),
     sunny:weather({
       rainChance:0,
@@ -241,9 +250,9 @@ function updateWeather(){
   }
   if(currentSlide==null){
     currentSlide = document.querySelector(".slide");
-    hash="#"+currentSlide.getAttribute("id");
+    hash="#slide-1";
   }
-  currentNav=document.querySelector("[href='"+hash+"']");
+  currentNav=document.querySelector("#slide-1");
   let data=weatherData[currentSlide.getAttribute('data-weather')];
   curWeatherData=data;
 

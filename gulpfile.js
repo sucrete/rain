@@ -16,7 +16,7 @@ function compileJS(file){
     .on("error", function (err) { console.log("Error : " + err.message); })
     .pipe(source(file+'.min.js'))
     .pipe(streamify(uglify()))
-    .pipe(gulp.dest('demo/js'));
+    .pipe(gulp.dest('./js'));
 }
 gulp.task('default',['js1','js2','js3'],function(){});
 gulp.task('js1',function(){

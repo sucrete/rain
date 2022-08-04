@@ -11670,6 +11670,8 @@ var textureRainFg = undefined,
     textureDrizzleFg = undefined,
     textureDrizzleBg = undefined,
     dropColor = undefined,
+	garden1=undefined,
+	garden2=undefined,
     dropAlpha = undefined;
 
 var textureFg = undefined,
@@ -11697,7 +11699,7 @@ var curWeatherData = null;
 var blend = { v: 0 };
 
 function loadTextures() {
-  (0, _imageLoader2["default"])([{ name: "dropAlpha", src: "img/drop-alpha.png" }, { name: "dropColor", src: "img/drop-color.png" }, { name: "textureRainFg", src: "img/weather/texture-rain-fg.png" }, { name: "textureRainBg", src: "img/weather/texture-rain-bg.png" }, { name: "textureStormLightningFg", src: "img/weather/texture-storm-lightning-fg.png" }, { name: "textureStormLightningBg", src: "img/weather/texture-storm-lightning-bg.png" }, { name: "textureFalloutFg", src: "img/weather/texture-fallout-fg.png" }, { name: "textureFalloutBg", src: "img/weather/texture-fallout-bg.png" }, { name: "textureSunFg", src: "img/weather/texture-sun-fg.png" }, { name: "textureSunBg", src: "img/weather/texture-sun-bg.png" }, { name: "textureDrizzleFg", src: "img/weather/texture-drizzle-fg.png" }, { name: "textureDrizzleBg", src: "img/weather/texture-drizzle-bg.png" }]).then(function (images) {
+  (0, _imageLoader2["default"])([{ name: "dropAlpha", src: "img/drop-alpha.png" }, { name: "dropColor", src: "img/drop-color.png" }, { name: "textureRainFg", src: "img/weather/texture-rain-fg.png" }, { name: "textureRainBg", src: "img/weather/texture-rain-bg.png" }, { name: "textureStormLightningFg", src: "img/weather/texture-storm-lightning-fg.png" }, { name: "textureStormLightningBg", src: "img/weather/texture-storm-lightning-bg.png" }, { name: "textureFalloutFg", src: "img/weather/texture-fallout-fg.png" }, { name: "textureFalloutBg", src: "img/weather/texture-fallout-bg.png" }, { name: "textureSunFg", src: "img/weather/texture-sun-fg.png" }, { name: "textureSunBg", src: "img/weather/texture-sun-bg.png" }, { name: "textureDrizzleFg", src: "img/weather/texture-drizzle-fg.png" }, { name: "textureDrizzleBg", src: "img/weather/texture-drizzle-bg.png" }, { name: "garden1", src: "img/garden1.jpg" }, { name: "garden2", src: "img/garden2.jpg" }]).then(function (images) {
     textureRainFg = images.textureRainFg.img;
     textureRainBg = images.textureRainBg.img;
 
@@ -11715,6 +11717,9 @@ function loadTextures() {
 
     dropColor = images.dropColor.img;
     dropAlpha = images.dropAlpha.img;
+
+	garden1 = images.garden1.img;
+	garden2 = images.garden2.img;
 
     init();
   });
@@ -11739,7 +11744,7 @@ function init() {
   textureBg = (0, _createCanvas2["default"])(textureBgSize.width, textureBgSize.height);
   textureBgCtx = textureBg.getContext('2d');
 
-  generateTextures(textureRainFg, textureRainBg);
+  generateTextures(garden1, garden1);
 
   renderer = new _rainRenderer2["default"](canvas, raindrops.canvas, textureFg, textureBg, null, {
     brightness: 1.04,
@@ -11798,8 +11803,8 @@ function setupWeatherData() {
     raining: true,
     trailRate: 1,
     trailScaleRange: [0.2, 0.35],
-    fg: textureRainFg,
-    bg: textureRainBg,
+    fg: garden1,
+    bg: garden1,
     flashFg: null,
     flashBg: null,
     flashChance: 0
@@ -11815,8 +11820,8 @@ function setupWeatherData() {
       rainLimit: 6,
       drizzle: 50,
       raining: true,
-      fg: textureRainFg,
-      bg: textureRainBg
+      fg: garden1,
+      bg: garden1
     }),
     storm: weather({
       minR: 20,
