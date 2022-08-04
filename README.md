@@ -3,6 +3,8 @@
 
 Some experimental rain and water drop effects in different scenarios using WebGL, by Lucas Bebber.
 
+Preview this version here 👉 https://sucrete.github.io/rain/
+
 [Article on Codrops](http://tympanus.net/codrops/?p=25417)
 
 [Demo](http://tympanus.net/Development/RainEffect/)
